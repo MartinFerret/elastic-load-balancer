@@ -1,0 +1,48 @@
+version: '3'
+services:
+  web1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8081
+    volumes:
+      - ./html/web:/usr/share/nginx/html
+      - ./scripts/entrypoint.sh:/docker-entrypoint.d/10-envsubst.sh
+    ports:
+      - 8081:80
+
+  web2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8082
+    volumes:
+      - ./html/web:/usr/share/nginx/html
+      - ./scripts/entrypoint.sh:/docker-entrypoint.d/10-envsubst.sh
+    ports:
+      - 8082:80
+
+  web3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8083
+    volumes:
+      - ./html/web:/usr/share/nginx/html
+      - ./scripts/entrypoint.sh:/docker-entrypoint.d/10-envsubst.sh
+    ports:
+      - 8083:80
+
+  haproxy:
+    image: haproxy:alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - web1
+      - web2
+      - web3
