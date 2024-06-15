@@ -2,36 +2,36 @@ version: '3'
 services:
   web1:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./docker
+      dockerfile: Dockerfile.nginx
     environment:
       - PORT=8081
     volumes:
-      - ./html/web:/usr/share/nginx/html
+      - ./angular_app/dist/angular_app/browser:/usr/share/nginx/html
       - ./scripts/entrypoint.sh:/docker-entrypoint.d/10-envsubst.sh
     ports:
       - 8081:80
 
   web2:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./docker
+      dockerfile: Dockerfile.nginx
     environment:
       - PORT=8082
     volumes:
-      - ./html/web:/usr/share/nginx/html
+      - ./angular_app/dist/angular_app/browser:/usr/share/nginx/html
       - ./scripts/entrypoint.sh:/docker-entrypoint.d/10-envsubst.sh
     ports:
       - 8082:80
 
   web3:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./docker
+      dockerfile: Dockerfile.nginx
     environment:
       - PORT=8083
     volumes:
-      - ./html/web:/usr/share/nginx/html
+      - ./angular_app/dist/angular_app/browser:/usr/share/nginx/html
       - ./scripts/entrypoint.sh:/docker-entrypoint.d/10-envsubst.sh
     ports:
       - 8083:80
