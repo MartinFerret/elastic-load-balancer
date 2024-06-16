@@ -25,3 +25,8 @@ Chaque fois qu'un utilisateur se connecte à l'application, le load balancer dir
 * 🙍‍♀️ est dirigé vers le port 8082.
 * 🙍‍♂️ est dirigé vers le port 8083.
 Ce processus de répartition de la charge assure une utilisation équilibrée des ressources et une expérience utilisateur stable, même en cas de fluctuations de la demande ou de pannes potentielles des serveurs individuels.
+## Lancer l'app ?
+
+* Avoir Docker installé
+* Lancer `docker-compose up --build` depuis la racine
+* Allez a l'URL __http://localhost__
